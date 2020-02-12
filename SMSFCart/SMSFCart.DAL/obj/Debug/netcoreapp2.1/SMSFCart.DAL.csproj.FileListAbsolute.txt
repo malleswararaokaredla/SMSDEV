@@ -1,0 +1,12 @@
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\bin\Debug\netcoreapp2.1\SMSFCart.DAL.deps.json
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\bin\Debug\netcoreapp2.1\SMSFCart.DAL.dll
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\bin\Debug\netcoreapp2.1\SMSFCart.DAL.pdb
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\bin\Debug\netcoreapp2.1\SMSFCart.BOL.dll
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\bin\Debug\netcoreapp2.1\SMSFCart.BOL.pdb
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\obj\Debug\netcoreapp2.1\SMSFCart.DAL.csproj.CoreCompileInputs.cache
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\obj\Debug\netcoreapp2.1\SMSFCart.DAL.AssemblyInfoInputs.cache
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\obj\Debug\netcoreapp2.1\SMSFCart.DAL.AssemblyInfo.cs
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\obj\Debug\netcoreapp2.1\SMSFCart.DAL.csproj.CopyComplete
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\obj\Debug\netcoreapp2.1\SMSFCart.DAL.dll
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\obj\Debug\netcoreapp2.1\SMSFCart.DAL.pdb
+D:\Trianing\GIT\SMSFCart\SMSFCart.DAL\obj\Debug\netcoreapp2.1\SMSFCart.DAL.csprojAssemblyReference.cache

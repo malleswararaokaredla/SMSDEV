@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="SMSFCart.BOL">
+      <HintPath>..\SMSFCart.DAL\bin\Debug\netcoreapp2.1\SMSFCart.BOL.dll</HintPath>
+    </Reference>
+    <Reference Include="SMSFCart.DAL">
+      <HintPath>..\SMSFCart.DAL\bin\Debug\netcoreapp2.1\SMSFCart.DAL.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

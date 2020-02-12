@@ -1,0 +1,9 @@
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\bin\Debug\netcoreapp2.1\SMSFCart.BOL.deps.json
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\bin\Debug\netcoreapp2.1\SMSFCart.BOL.dll
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\bin\Debug\netcoreapp2.1\SMSFCart.BOL.pdb
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\obj\Debug\netcoreapp2.1\SMSFCart.BOL.csproj.CoreCompileInputs.cache
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\obj\Debug\netcoreapp2.1\SMSFCart.BOL.AssemblyInfoInputs.cache
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\obj\Debug\netcoreapp2.1\SMSFCart.BOL.AssemblyInfo.cs
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\obj\Debug\netcoreapp2.1\SMSFCart.BOL.dll
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\obj\Debug\netcoreapp2.1\SMSFCart.BOL.pdb
+D:\Trianing\GIT\SMSFCart\SMSFCart.BOL\obj\Debug\netcoreapp2.1\SMSFCart.BOL.csprojAssemblyReference.cache
