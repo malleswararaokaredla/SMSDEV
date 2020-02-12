@@ -1,0 +1,60 @@
+<app-top-nav class="fixed-topnav" fxHide.gt-xs></app-top-nav>
+  <mat-sidenav-container>
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+        <side-nav-menu-list-item *ngFor="let item of navItems" [item]="item"></side-nav-menu-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="container" style="margin-left: 270px;max-width: 1200px;">   
+    <table >
+      <th style="text-align: center">
+        <h3> List of Available Products </h3>
+      </th>
+    </table>
+    <div class="container" [hidden]="!show" style="width:100%"> 
+       <mat-form-field>
+        <input matInput [formControl]="pNFilter" placeholder="Search Product Name">
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput [formControl]="cNFilter" placeholder="Search Category Name">
+      </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput [formControl]="scNFilter" placeholder="Search Sub Category Name">
+      </mat-form-field>
+
+    <table mat-table  [dataSource]="dataSource"  class="mat-elevation-z8" matSort style="width:100%">      
+      <ng-container matColumnDef="pName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th> 
+        <td mat-cell *matCellDef="let row"> {{row.pName}} </td>  
+      </ng-container>    
+
+      <ng-container matColumnDef="pcName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </th> 
+        <td mat-cell *matCellDef="let row"> {{row.pcName}} </td>  
+      </ng-container> 
+      
+      <ng-container matColumnDef="pscName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub Category Name </th> 
+        <td mat-cell *matCellDef="let row"> {{row.pscName}} </td>  
+      </ng-container> 
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>  
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+ 
+  
+
+<div [hidden]="show">No Products Data </div>
+</div>
+</mat-sidenav-container>
+
+
+
+  

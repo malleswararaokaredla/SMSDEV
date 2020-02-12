@@ -1,0 +1,181 @@
+
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="appDrawer.toggle()" class="mat-concls"><mat-icon class="menu-iconcls">menu</mat-icon></button>
+    <span><img src="../../../assets/MyImages/mainlogo3.jpg" height="50" width="130" alt="mdb logo" [routerLink]="['/home/']" style="cursor:pointer" /></span>
+    <div style="margin-top:5px;cursor:pointer;float:right;width:100%">
+
+      <div style="float:right;margin-right:28px" (click)="viewbag()">
+        <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+
+      </div>
+      <span class="badge badge-dark bdgsty" (click)="viewbag()">{{catcount}}</span>
+
+      <div style="float:right;margin-right:15px" (click)="userprofile()">
+
+        <span style="text-align:right">
+
+          <i class="fa fa-user-circle fa-2x mdb-color white-text" aria-hidden="true" [matMenuTriggerFor]="menu" (mouseenter)="openMyMenu()"></i>
+          <mat-menu #menu="matMenu" [hidden]="show">
+            <button mat-menu-item (click)="openorderspage()">
+              <mat-icon>assignment</mat-icon>
+              <span>Orders</span>
+            </button>
+            <button mat-menu-item (click)="whishlist()">
+              <mat-icon>favorite_border</mat-icon>
+              <span>WishList</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>location_on</mat-icon>
+              <span>SaveAddress</span>
+            </button>-->
+            <button mat-menu-item (click)="prifilepage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>EditProfile</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>vpn_key</mat-icon>
+              <span>ChangePassword</span>
+            </button>
+            <button mat-menu-item (click)="uploadimage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>UploadImage</span>
+            </button>-->
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <!--<div class="row" style="margin:50px">
+        <span style="margin-left:100px;"><a [routerLink]="['/home/']">Home</a>/<a [routerLink]="[itemspage]">Kurtis</a></span>
+      </div>-->
+
+      <div class="row" style="margin:50px">
+        <div class="col-md-6">
+          <div class="row" >
+            <div class="col-md-6" *ngFor="let element of itemscatlog;let imgindex = index" style="margin-bottom:10px;">
+              <img [src]="element" style="width:360px;height:700px;"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngFor="let itm of itemdetails; let i = index">
+          <div>
+            <span class="txtsty">BrandName</span>:<span class="subtxtsty">{{itm.brandname}}</span>
+          </div>
+          <br />
+          <div>
+            <span class="txtsty">Name</span>:<span class="subtxtsty">{{itm.itm_descp}}</span>
+          </div>
+          <br />
+          <div>
+            <span class="txtsty">Price</span>:<span class="txtsty">{{itm.price}}</span>
+          </div>
+          <br />
+          <div class="txtsty">
+            <span>Size  </span>
+            <!--<div>
+              <span *ngFor="let itm of itemsizes;  let i = index;let showdiv=index;">
+                <button (click)="getitemsize(itm.itm_size)">{{itm.itm_size}}</button>
+              </span>
+             
+            </div>-->
+            <!--<mat-button-toggle-group #group="matButtonToggleGroup" *ngFor="let itm of itemsizes">
+             
+              <mat-button-toggle value="itm.itm_size">
+                <span>{{itm.itm_size}}</span>
+              </mat-button-toggle>
+
+            </mat-button-toggle-group>-->
+            <!--<div class="example-selected-value">Selected value: {{group.value}}</div>-->
+          </div>
+          <div class="btn-group-vertical" role="group" aria-label="button group" *ngFor="let itm of itemsizes">
+            <button mdbBtn type="button" color="amber" class="waves-light ml-0" mdbWavesEffect style="border-radius:50%;padding:20px;margin-left:10px"
+                 [ngClass]="['bntStyle']" (click)="getitemsize(itm.itm_size)" >
+            {{itm.itm_size}}</button>
+            <!--<button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+            <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+            <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+            <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+            <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>-->
+          </div>
+          <br />
+          <div>
+
+            <button type="button" mdbBtn color="success" mdbWavesEffect (click)="AddtoBag(i)">ADD TO BAG</button>
+            <button type="button" mdbBtn color="info" mdbWavesEffect (click)="movetowishlist(itm)">WISHLIST</button>
+          </div>
+          <br />
+          <div>
+            <span class="spectxtsty">Material Care & Type :</span><span>{{itm.care}}</span>
+          </div>
+          <br />
+          <div>
+            <span style="font-weight:bold">Specifications  :</span>
+            <br />
+            <br />
+            <div>
+              <span class="spectxtsty">Sleeves Length :</span><span>{{itm.sleeve_Length}}</span>
+            </div>
+            <br />
+            <div>
+              <span class="spectxtsty">Neck :</span><span>{{itm.neck_type}}</span>
+            </div>
+            <br />
+            <div>
+              <span class="spectxtsty">Print or PatternType :</span><span>{{itm.prints_pattern}}</span>
+            </div>
+            <br />
+            <!--<div>
+      <span>Slit Details :</span><span>{{}}</span>
+    </div>-->
+
+
+            <div>
+              <span class="spectxtsty">Length :</span><span>{{itm.itm_length}}</span>
+            </div>
+            <br />
+            <div>
+              <span class="spectxtsty">Colour :</span><span>{{itm.color}}</span>
+            </div>
+            <br />
+            <div>
+              <span class="spectxtsty">Occusion :</span><span>{{itm.occasion}}</span>
+            </div>
+            <br />
+            <div>
+              <span class="spectxtsty">Attached Sleeves :</span><span>{{itm.attached_sleeves}}</span>
+            </div>
+            <br />
+            <div>
+              <span class="spectxtsty">Product Code :</span><span>{{itm.product_code}}</span>
+            </div>
+            <br />
+            <!--<div>
+      <span>Care :</span><span>sdhfsjdhfsjhddfjh</span>
+    </div>-->
+          </div>
+        </div>
+      </div>
+    
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>
+

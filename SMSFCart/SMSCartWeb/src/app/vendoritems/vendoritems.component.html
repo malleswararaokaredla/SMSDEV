@@ -1,0 +1,250 @@
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">-->
+
+
+
+<app-top-nav class="fixed-topnav" fxHide.gt-xs></app-top-nav>
+<mat-sidenav-container>
+  <mat-sidenav #appDrawer mode="over" opened="false">
+    <mat-nav-list>
+      <side-nav-menu-list-item *ngFor="let item of navItems" [item]="item"></side-nav-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="container" style="margin-left: 270px;max-width: 1200px;padding-top:10px;">
+    <table>
+      <th style="text-align: center">
+        <!-- <h3> {{RoleName}} List </h3> -->
+      </th>
+    </table>
+
+
+
+
+    <!-- Table with panel -->
+
+    <div class="card card-cascade narrower">
+
+      <!--Card image-->
+      <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+
+        <div>
+          <!--<button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="fas fa-th-large mt-0"></i>
+          </button>
+          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="fas fa-columns mt-0"></i>
+          </button>
+
+          <i class="fas fa-user-edit"></i>-->
+
+        </div>
+
+        <!--<a href="" class="white-text mx-3">{{vname}}</a>-->
+        <label class="white-text mx-3">{{vname}}</label>
+
+        <div>
+          <!--<button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="fas fa-pencil-alt mt-0"></i>
+          </button>
+          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="far fa-trash-alt mt-0"></i>
+          </button>
+          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="fas fa-info-circle mt-0"></i>
+          </button>-->
+          <!--<button mat-raised-button color="accent" (click)="Delvitems()">Delete</button>-->
+        </div>
+
+      </div>
+      <!--/Card image-->
+
+      <div class="px-4">
+
+        <div class="table-wrapper">
+          <!--Table-->
+          <table class="table table-striped table-hover table-bordered" id="ddlvendor">
+            <thead class="black white-text">
+              <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Category Name</th>
+                <th scope="col">Product Sub Category Name</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of items">
+              <tr>
+
+                <!--<td scope="row">
+                  <input class="form-check-input" type="checkbox" id="chk_{{item.prod_subcat_id}}">
+                  <label class="form-check-label label-table" for="chk_{{item.prod_subcat_id}}" ></label>
+                </td>-->
+
+                <td id="{{item.pid}}">{{item.pName}}</td>
+                <td>{{item.pcName}}</td>
+                <td>{{item.pscname}}</td>
+                <td class="text-center">
+                  <button mdbBtn mat-raised-button color="teal" id="pedit" type="button" class="m-0" data-toggle="modal" (click)="openedit(item)" data-target="#editModal" data-id="{{item.prod_subcat_id}}" mdbWavesEffect>Edit</button>
+                  &nbsp;&nbsp;<button mdbBtn mat-raised-button color="accent" class="m-0" data-toggle="modal" data-target="#delmodal" (click)="Delvitems(item)">Delete</button>
+                </td> <!-- (click)="openedit(item.pid)" rounded="true" size="sm"-->
+
+
+
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Table-->
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+    <!-- Table with panel -->
+
+
+  </div>
+
+
+</mat-sidenav-container>
+
+
+
+<div [hidden]="IsmodelShow" class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-warning" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header text-center">
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2">Product Data</h4>
+        <button type="button" class="close" data-dismiss="modal" #closeBtn aria-label="Close">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+
+
+
+      <div class="form-group">
+
+        <label for="vendoritem" class="control-label col-sm-3">Product_Names</label>
+        <div class="col-sm-8">
+          <select class="form-control" [(ngModel)]='nrSelect' id="ddlpname" placeholder="select Product name" (change)="productaccord($event.target.value)">
+            <option [value]="v.PID" *ngFor="let v of products">{{v.pName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address" class="control-label col-sm-3">Product_C_Name</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="ddlcname" placeholder="select Product name" (change)="productcat($event.target.value)" [(ngModel)]="pcitem">
+            <option *ngFor="let v of prodcategories" [value]="v.prod_cat_id">{{v.pcName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="control-label col-sm-3">Product_S_name</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="ddlpcname" placeholder="select Product name" [(ngModel)]="psitem">
+            <option *ngFor="let p of prodsubcategories" [value]="p.prod_subcat_id">{{p.pscname}}</option>
+          </select>
+        </div>
+      </div>
+
+
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <!--<a type="button" class="btn btn-outline-warning waves-effect">Update<i class="fas fa-paper-plane-o ml-1"></i></a>-->
+
+        <button id="btnupdate" class="btn btn-outline-warning waves-effect" (click)="update()">Update</button>
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="delmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-notify modal-warning" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal" #clsbtn aria-label="Close">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+
+
+
+
+      <fieldset>
+        <legend class="text-center">Delete Item</legend>
+
+        <!-- Name input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="name">Product_Name</label>
+          <div class="col-md-9">
+            <label id="lblpname" class="form-control"></label>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="pcname">Product_Category_Name</label>
+          <div class="col-md-9">
+            <label id="lblpcname" class="form-control"></label>
+          </div>
+        </div>
+
+        <!-- Message body -->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="message">Product_SCategory_Name</label>
+          <div class="col-md-9">
+            <label id="lblpsname" class="form-control"></label>
+          </div>
+        </div>
+
+        <!-- Form actions -->
+        <div class="form-group">
+          <div class="col-md-12 text-right">
+            Are you sure u want to <button class="btn btn-primary btn-lg" (click)="delitems(item)">Delete</button><label>or</label><button class="btn btn-primary" (click)="close()">Cancel</button>
+
+          </div>
+        </div>
+      </fieldset>
+
+
+    </div>
+
+
+
+    <!--/.Content-->
+  </div>
+</div>
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<!-- modal -->
+
+

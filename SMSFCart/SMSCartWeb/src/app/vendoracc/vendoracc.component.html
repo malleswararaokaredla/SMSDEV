@@ -1,0 +1,114 @@
+<app-top-nav class="fixed-topnav" fxHide.gt-xs></app-top-nav>
+  <mat-sidenav-container>
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+        <side-nav-menu-list-item *ngFor="let item of navItems" [item]="item"></side-nav-menu-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="container" style="margin-left: 270px;max-width: 1200px">   
+    <table >
+      <th style="text-align: center">
+        <!-- <h3> {{RoleName}} List </h3> -->
+      </th>
+    </table>
+
+	<mdb-card style="margin: 0px auto; margin-top: 50px;background:#ebeff2">
+			<mdb-card-header style="text-align: center; color: #d02be2; font-size: x-large;font-weight: 400; ">Vendor Product
+				Selection</mdb-card-header>
+
+      <div style="margin: 13px auto;width: 530px;display:none">
+        <div class="form-group">
+          <label for="vendoritem" class="control-label col-sm-3">Vendor Names</label>
+          <div class="col-sm-4">
+            <select class="form-control" id="ddlvendor" placeholder="select vendor name" [(ngModel)]="selecteditem">
+              <option *ngFor="let v of vitems" [ngValue]="v.UID">{{v.firstName}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+				<mat-accordion class="example-headers-align" *ngFor="let item of products;let i=index" style="width: 500px; margin: 0px auto; margin-top: 50px;"
+				title="mainaccord_{{item.pid}}" id='{{item.pid}}'>
+          <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+            <mat-expansion-panel-header (click)="productaccord(item.pid, 'main'+item.pid)" style="width: 800px;	align-items: center;">
+              <mat-panel-title>
+                <div id='main_{{item.pid}}'>
+                  {{item.pName}}
+                </div>
+              </mat-panel-title>
+              <mat-panel-description>
+
+                <mat-icon style="margin-left: 300px;"> account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+
+            </mat-action-row>
+
+            <!--[expanded]="innerstep === j" (opened)="isetStep(j)" hideToggle-->
+            <mat-accordion *ngFor="let pcitem of prodcategories;let j=index">
+              <mat-expansion-panel [expanded]="innerstep === j" (opened)="isetStep(j)" hideToggle>
+                <mat-expansion-panel-header (click)="productaccord(pcitem.prod_cat_id, 'sub'+pcitem.prod_cat_id)" >
+
+
+                  <mat-panel-title>
+                    {{pcitem.pcName}}
+                  </mat-panel-title>
+
+
+                  <mat-panel-description>
+
+                  </mat-panel-description>
+
+                  <!-- <mat-action-row>
+          <button mat-button color="warn" (click)="iprevStep()">Previous</button>
+          <button mat-button color="primary" (click)="inextStep()">Next</button>
+        </mat-action-row> -->
+
+                </mat-expansion-panel-header>
+                <!--[expanded]="subinnerstep === k" (opened)="issetStep(k)" hideToggle-->
+                <mat-accordion *ngFor="let psitem of prodsubcategories;let k=index" hideToggle>
+                  <mat-expansion-panel  hideToggle>
+                    <mat-expansion-panel-header>
+
+
+
+                      <mat-panel-title id='ptitle'>
+                        <!-- <mdb-checkbox [inline]="true" [default]="true" id='chk_{{psitem.prod_subcat_id}}' name='chkacc' value={{psitem.prod_subcat_id}}>{{psitem.pscname}}</mdb-checkbox><br>  -->
+                        <input type="checkbox" id='chk_{{psitem.prod_subcat_id}}' (change)="updateCheckedOptions(psitem, $event)" name='chkacc' class="chkinnacc" value={{psitem.prod_subcat_id}}>{{psitem.pscname}}<br>
+
+                      </mat-panel-title>
+
+
+
+                      <mat-panel-description>
+
+                      </mat-panel-description>
+
+                    </mat-expansion-panel-header>
+
+                  </mat-expansion-panel>
+
+                </mat-accordion>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <div *ngIf="show">
+              <button type="button" id="btnproduct" class="btn btn-primary" (click)="getproductitems(psitem,$event)" style="margin-top: 16px;float: right;">Add Product</button>
+
+              <!-- <button (ngSubmit)="submit()">submit</button> -->
+            </div>
+
+          </mat-expansion-panel>
+				
+				
+				
+				</mat-accordion>
+				
+		</mdb-card>
+		
+</div>
+</mat-sidenav-container>

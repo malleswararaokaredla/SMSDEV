@@ -1,0 +1,551 @@
+<!--<div class="womenmainmenu">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="imglogosty">
+        <img class="animated swing" src="../../assets/MyImages/mainlogo3.jpg" height="70" width="150" alt="mdb logo">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="margin-top:10px;">
+        <div style="float:right;margin-right:45px">
+          <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+        </div>
+        <span class="badge badge-dark bdgsty">9</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style="margin:40px">
+      <span class="txtsty">
+        Choose category
+      </span>
+    </div>
+    <div style="margin-left:100px">
+      <div class="row">
+        <div class="col-md-1">
+          <div class="submenutxtsty" (click)="kurtasList()">
+            <img src="../../assets/MyImages/kurti2.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">kurtas</span>
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img src="../../assets/MyImages/krt2.jpeg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Tops</span>
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img src="../../assets/MyImages/wsarees.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Sarees</span>
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img src="../../assets/MyImages/swtr.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Winterware</span>
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img  src="../../assets/MyImages/handbag.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Bags</span>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img src="../../assets/MyImages/footware.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Footware</span>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img src="../../assets/MyImages/kids.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Kids</span>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img src="../../assets/MyImages/bangle.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Accessories</span>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="submenutxtsty">
+            <img src="../../assets/MyImages/kit.jpg" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                 alt="Responsive image">
+          </div>
+          <div class="submenutxtsty">
+            <span class="txtsty">Beauty</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-top:400px;text-align:center">
+  <img src="../../assets/MyImages/offers/discount1.jpg" class="wow jello imgstydiscount" data-wow-delay="0.6s">
+  <img src="../../assets/MyImages/offers/discount2.jpg" class="wow shake imgstydiscount" data-wow-delay="0.6s">
+  <img src="../../assets/MyImages/offers/dicount3.jpg" class="wow swing imgstydiscount" data-wow-delay="0.6s">
+  <img src="../../assets/MyImages/offers/dicount4.jpg" class="wow tada imgstydiscount" data-wow-delay="0.6s">
+  <img src="../../assets/MyImages/offers/discount5.jpg" class="wow jello imgstydiscount" data-wow-delay="0.6s">
+</div>
+
+<div class="row" style="margin:20px">
+  <div class="col-md-2">
+    <div>
+      <div>
+        <img src="../../assets/MyImages/offers/discount1.jpg" class="wow jello imgstydiscount" data-wow-delay="0.6s">
+      </div>
+      <div>
+        title
+      </div>
+    </div>
+  </div>
+</div>-->
+
+
+<div class="">
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar womenmainmenu">
+
+      <div class="row" style="width:100%">
+        <div class="col-md-6">
+          <div class="imglogosty">
+            <img class="animated swing" [src]="applog" height="50" width="130" alt="mdb logo" [routerLink]="['/home/']" style="cursor:pointer">
+          </div>
+        </div>
+        <div class="col-md-6">
+
+          <div style="margin-top:5px;cursor:pointer">
+
+            <div style="float:right;margin-right:3px" (click)="viewbag()">
+              <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+            </div>
+            <span class="badge badge-dark bdgsty" (click)="viewbag()">{{catcount}}</span>
+          </div>
+
+        </div>
+      </div>
+
+    </nav>
+
+
+
+    <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar womenmainmenu" style="margin-top:65px">
+      <div class="row" style="width:100%">
+        <div>
+          <div style="margin:5px">
+            <span class="txtsty">
+              Choose category
+            </span>
+          </div>
+          <div style="margin-left:100px">
+            <div class="row">
+              <div class="col-md-1" *ngFor="let element of womenscatgrytypes">
+                <div class="submenutxtsty" (click)="kurtasList(element.value)">
+                  <img [src]="element.img" class="img-fluid z-depth-1 rounded-circle subimgsty"
+                       alt="Responsive image">
+                </div>
+                <div class="submenutxtsty">
+                  <span class="txtsty">{{element.name}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+</div>
+
+<div style="margin-top:400px;text-align:center">
+  <span *ngFor="let element of wmnoffers">
+    <img [src]="element.img" class="wow jello imgstydiscount" data-wow-delay="0.6s">
+  </span>
+</div>
+
+<!--<div class="AGENTSheading">
+  <span>CART AGENTS</span>
+</div>
+<div>
+  <mdb-carousel class="carousel slide" [animation]="'slide'">
+    <mdb-carousel-item *ngFor="let element of cartclients">
+      <img class="d-block w-100" [src]="element.img" alt="First slide">
+    </mdb-carousel-item>
+  </mdb-carousel>
+</div>-->
+
+<div class="AGENTSheading">
+  <span>BRANDS</span>
+</div>
+<div class="" >
+  <div class="row" style="margin:10px;">
+    <div class="col-md-3" *ngFor="let element of brands" style="margin-bottom:10px;cursor:pointer" (click)="getbrandsProducts(element.bname)">
+      <img [src]="element.offer_img" />
+    </div>
+  </div>
+ 
+</div>
+<!--<div style="margin:40px">
+  <div class="card-deck">
+
+    <mdb-card>
+      <div class="view overlay waves-light" mdbWavesEffect>
+
+        <mdb-card-img [src]="womencatgcatlog" alt="Card image cap"></mdb-card-img>
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>Card Title</h4>
+        </mdb-card-title>
+
+        Text
+        <mdb-card-text>
+          Some quick example text to build on the card title and make up the bulk of the card's
+          content.
+        </mdb-card-text>
+
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Printed</a>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Solids</a>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Wollen</a>
+      </mdb-card-body>
+    </mdb-card>
+
+
+    <mdb-card>
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+
+        <mdb-card-img [src]="womencatgcatlog2" alt="Card image cap"></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>Card Title</h4>
+        </mdb-card-title>
+
+
+      <mdb-card-text>
+          Some quick example text to build on the card title and make up the bulk of the card's
+          content.
+        </mdb-card-text>
+
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Georgette</a>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Silk</a>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Cotton</a>
+      </mdb-card-body>
+    </mdb-card>
+
+
+    <mdb-card>
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+
+        <mdb-card-img [src]="womencatgcatlog3" alt="Card image cap"></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>Card Title</h4>
+        </mdb-card-title>
+
+
+        <mdb-card-text>
+          Some quick example text to build on the card title and make up the bulk of the card's
+          content.
+        </mdb-card-text>
+
+
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Solids&Checks</a>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Warp&A-line</a>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>FullSleeves</a>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>-->
+<!--<div class="brndsheading">
+  <span>SHOP MOST WANTED BRANDS</span>
+</div>
+<div class="row" style="text-align:center">
+  <div class="col-md-3" *ngFor="let element of brands">
+    <img [src]="element.img" alt="Card image cap"
+         class="img-fluid brandsimgsty">
+  </div>
+</div>-->
+<!--<div style="margin-top:400px">
+  swathi
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Here’s what you need to know before getting started with the navbar:
+
+
+    Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+
+    Navbars and their contents are built with flexbox, providing easy alignment options via utility classes.
+
+    Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+
+
+    , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+
+    Read on for an example and list of supported sub-components.
+  </p>
+  <p>
+    Footer row
+    A footer row can be added to the table by adding a footer row definition to the table and adding footer cell templates to column definitions. The footer row will be rendered after the rendered data rows.
+
+  </p>
+</div>-->
+<!--<div>
+  <img src="../../assets/MyImages/bangle.jpg" class="wow fadeInUp" data-wow-delay="0.6s">
+</div>-->
+<!--<div mdbModal #basicModal="mdb-modal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" [formControl]="loginFormModalEmail" class="form-control validate" mdbInputDirective>
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" [formControl]="loginFormModalPassword" class="form-control validate" mdbInputDirective>
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect>Login</button>
+      </div>
+    </div>
+  </div>
+
+</div>-->

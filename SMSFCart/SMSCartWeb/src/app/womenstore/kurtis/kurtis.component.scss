@@ -1,0 +1,98 @@
+.blocksty {
+  width: 200px;
+  height: 300px;
+  cursor: pointer;
+  margin:10px;
+  margin-bottom:70px;
+}
+
+.imgsty {
+  width: 200px;
+  height: 250px;
+}
+
+.pricesty {
+  font-family: 'Fredoka One';
+}
+.substy {
+  font-family: 'Fredoka One';
+  font-size: 20px;
+  font-weight: bold;
+ 
+}
+.substy1 {
+  font-family: 'Fredoka One';
+  font-size: 16px;
+  font-weight: bold;
+}
+.sortsty {
+  float: right;
+  margin: 30px;
+ padding:5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+}
+
+li {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+
+li:hover {
+  background-color:#4a9ae8;
+  color: white;
+}
+.sortsty1 {
+  float: right;
+ 
+  margin: 30px;
+  padding: 5px;
+}
+.sortstydiv {
+  width: 200px;
+  height: 33px;
+  border: 1px solid #f13c9f;
+  padding:5px;
+}
+
+/*for search*/
+
+/*.club {
+  box-sizing: border-box;
+}
+
+.club input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid black;
+  border-right: 0px solid black;
+  float: left;
+  width: 500px;
+}
+
+.club button {
+  float: left;
+  width: 10%;
+  padding: 10px;
+  background: white;
+  color: black;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+.searchsty{
+  margin-left:50px;
+  margin-top:50px;
+  margin-bottom:50px;
+}*/

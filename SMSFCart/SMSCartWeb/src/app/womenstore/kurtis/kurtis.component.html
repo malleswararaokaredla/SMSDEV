@@ -1,0 +1,155 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="appDrawer.toggle()" class="mat-concls"><mat-icon class="menu-iconcls">menu</mat-icon></button>
+    <span><img [src]="applog" height="50" width="130" alt="mdb logo" [routerLink]="['/home/']" style="cursor:pointer" /></span>
+
+
+
+
+    <div style="margin-top:5px;cursor:pointer;float:right;width:100%">
+
+
+
+      <div style="float:right;margin-right:28px" (click)="viewbag()">
+        <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+
+      </div>
+      <span class="badge badge-dark bdgsty" (click)="viewbag()">{{catcount}}</span>
+
+      <div style="float:right;margin-right:15px" (click)="userprofile()">
+
+        <span style="">
+
+          <i class="fa fa-user-circle fa-2x mdb-color white-text" aria-hidden="true" [matMenuTriggerFor]="menu" (mouseenter)="openMyMenu()"></i>
+          <mat-menu #menu="matMenu" hidden="hidden">
+            <button mat-menu-item (click)="openorderspage()">
+              <mat-icon>assignment</mat-icon>
+              <span>Orders</span>
+            </button>
+            <button mat-menu-item (click)="whishlist()">
+              <mat-icon>favorite_border</mat-icon>
+              <span>WishList</span>
+            </button>
+            <button mat-menu-item (click)="prifilepage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>EditProfile</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+       
+      <div class="" style="float:right;margin-right:20px">
+        <div class="club">
+          <input type="text" #searchdata>
+          <button type="submit" (click)="getsearchdata(searchdata.value)"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+
+
+      <div class="">
+        <div class="sortsty">
+          <div class="sortstydiv" (mouseenter)="opensortlist()">
+            <span>Sort By : Recommended </span><i class="fa fa-angle-down"></i>
+          </div>
+          <div [hidden]="sortlist">
+            <ul *ngFor="let data of sortlistdata;let i=index">
+              <li (click)="getvalue(i)">Price: {{data}}</li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="" style="margin-top:200px;">
+        <span style="margin-left:100px;"><a [routerLink]="['/home/']">Home</a>/<a [routerLink]="[url]">Category</a></span>
+      </div>-->
+
+      <div class="row" style="margin-top:200px;">
+        <div class="col-md-2">
+          <div style="margin:50px;">
+            <div>
+              <span class="substy">FILTERS</span>
+            </div>
+            <div style="margin-top:20px">
+              <div *ngIf="brandsdata?.length > 0">
+                <span class="substy1">BRAND</span>
+              </div>
+              <div style="margin-top:20px">
+                <section class="example-section" *ngFor="let data of brandsdata;let i=index">
+                  <mat-checkbox class="example-margin" (change)="getcheckboxvalue($event,i,data)">{{data}}</mat-checkbox>
+                </section>
+              </div>
+
+              <div *ngIf="categories?.length > 0">
+                <span class="substy1">CATEGORIES</span>
+              </div>
+              <div style="margin-top:20px">
+                <section class="example-section" *ngFor="let data of categories;let i=index">
+                  <mat-checkbox class="example-margin" (change)="FilterCagwise($event,i,data)">{{data}}</mat-checkbox>
+                </section>
+              </div>
+
+
+              <div *ngIf="pricefilter?.length > 0">
+                <span class="substy1">PRICE</span>
+              </div>
+              <div style="margin-top:20px">
+                <section class="example-section" *ngFor="let data of pricefilter;let i=index">
+                  <!--<mat-checkbox class="example-margin" (change)="getPRICEcheckboxvalue($event,data)">{{data}}</mat-checkbox>-->
+
+                  <mat-checkbox class="example-margin" (change)="getPRICEcheckboxvalue($event,i)">{{data}}</mat-checkbox>
+                </section>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-10">
+          <div style="margin-top:50px;">
+            <div class="row">
+              <div class="col-md-2 blocksty" *ngFor="let element of items" (click)="displayitemdesc(element.itm_id)">
+                <div>
+                  <img [src]="element.cat_img" class="imgsty" />
+                </div>
+
+                <div class="pricesty" style="font-weight:bold">
+                  <span>{{element.brandname}}</span>
+                </div>
+                <div class="pricesty">
+                  <span>{{element.it_name}}</span>
+                </div>
+                <div class="pricesty" style="font-weight:bold">
+                  RS.  <span>{{element.price}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>
+

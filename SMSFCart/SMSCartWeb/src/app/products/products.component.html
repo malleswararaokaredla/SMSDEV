@@ -1,0 +1,159 @@
+<app-top-nav class="fixed-topnav" fxHide.gt-xs></app-top-nav>
+<mat-sidenav-container>
+  <mat-sidenav #appDrawer mode="over" opened="false">
+    <mat-nav-list>
+      <side-nav-menu-list-item *ngFor="let item of navItems" [item]="item"></side-nav-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="container" style="margin-left: 270px;max-width: 1200px;">
+    <!--Stepper -->
+  <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper"     
+  (selectionChange)="stepClick($event)">
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Add / Modify Products</ng-template>       
+  <mat-table class="table-margin-bottom" #table [dataSource]="pdataSource">
+    <ng-container matColumnDef="pName">
+      <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+          <input matInput [formControl]="row.validator.controls['pName']" [readonly]="!row.editing" placeholder="Product Name" [(ngModel)]="row.currentData.pName" (focusout)="UniqueProduct(row.currentData.pName,row.currentData.pid)">
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="accent" (click)="dataSource.createNew()"><i class="fa fa-plus mat-icon"></i></button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (click)="row.startEdit()">
+              <i class="fa fa-pencil mat-icon"></i>
+            </button>
+        <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="confirmEditCreate(row)">
+              <i class="fa fa-check mat-icon"></i>
+            </button>
+        <button mat-icon-button color="primary" focusable="false" (click)="( row.currentData.pid == 0 || row.editing ) ? row.cancelOrDelete(row.currentData.pid) : cancelOrDelete(row.currentData.pid) ">
+              <i class="fa fa-times mat-icon"></i>
+            </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplayforProduct"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplayforProduct;"></mat-row>
+  </mat-table>
+
+  <div [hidden]="pshow">No Products </div>
+  <div>
+    <button mat-button matStepperNext>Next</button>
+</div>
+</mat-step>
+<mat-step [stepControl]="secondFormGroup">
+  <ng-template matStepLabel>Add / Modify Category</ng-template>
+  <mat-table class="table-margin-bottom" #table [dataSource]="cdataSource"> 
+      <ng-container matColumnDef="pid">
+          <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+               <mat-select placeholder="Select Product Name" [disabled]="!row.editing" #prod [(ngModel)]='row.currentData.pid' 
+               (selectionChange)="UpdatePID(prod.value)">
+                   <mat-option [value]="product.pid" *ngFor="let product of products" [value]="product.value" >
+                    {{product.pName}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+    <ng-container matColumnDef="pcName">
+      <mat-header-cell *matHeaderCellDef> Category Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+          <input matInput [formControl]="row.validator.controls['pcName']" [readonly]="!row.editing" placeholder="Category Name" [(ngModel)]="row.currentData.pcName" (focusout)="UniqueCategory(row.currentData.pcName,row.currentData.prod_cat_id)">
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="accent" (click)="cdataSource.createNew()"><i class="fa fa-plus mat-icon"></i></button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (click)="row.startEdit()">
+              <i class="fa fa-pencil mat-icon"></i>
+            </button>
+        <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="confirmEditCreate_c(row)">
+              <i class="fa fa-check mat-icon"></i>
+            </button>
+        <button mat-icon-button color="primary" focusable="false" (click)="( row.currentData.prod_cat_id == 0 || row.editing ) ? row.cancelOrDelete(row.currentData.prod_cat_id,'c') : cancelOrDelete_c(row.currentData.prod_cat_id,'c') ">
+              <i class="fa fa-times mat-icon"></i>
+            </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplayforCategory"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplayforCategory;"></mat-row>
+  </mat-table>
+  <div [hidden]="cshow">No Categories </div>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+</div>
+</mat-step>
+<mat-step [stepControl]="ThirdFormGroup">
+    <ng-template matStepLabel >Add / Modify Sub-Category</ng-template>
+    <mat-table class="table-margin-bottom" #table [dataSource]="scdataSource"> 
+       <ng-container matColumnDef="prod_cat_id">
+        <mat-header-cell *matHeaderCellDef> Category Name </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+           <mat-form-field > 
+              <mat-select placeholder="Select Category Name" [disabled]="!row.editing" #cat [(ngModel)]='row.currentData.prod_cat_id' (selectionChange)="UpdatecatID(cat.value)">
+                <mat-option [value]="category.prod_cat_id" *ngFor="let category of categories" [value]="category.value">
+                  {{category.pcName}}
+                </mat-option>
+              </mat-select>
+              <!-- <mat-form-field floatLabel="{{ row.editing ? 'never' : 'never'}}">
+                  <input matInput [formControl]="row.validator.controls['pcName']" [readonly]="true" placeholder="Category Name" [(ngModel)]="row.currentData.pcName"> 
+                </mat-form-field> -->
+          </mat-form-field>
+        </mat-cell>
+      </ng-container> 
+      <ng-container matColumnDef="pscName">
+        <mat-header-cell *matHeaderCellDef> Sub Category Name </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+          <input matInput [formControl]="row.validator.controls['pscName']" [readonly]="!row.editing" placeholder="Sub Category Name" [(ngModel)]="row.currentData.pscName"> 
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="accent" (click)="scdataSource.createNew()"><i class="fa fa-plus mat-icon"></i></button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">              
+        <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (click)="row.startEdit()">
+              <i class="fa fa-pencil mat-icon"></i>
+            </button>
+        <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="confirmEditCreate_sc(row)">
+              <i class="fa fa-check mat-icon"></i>
+            </button>
+        <button mat-icon-button color="primary" focusable="false" (click)="( row.currentData.prod_subcat_id == 0 || row.editing ) ? row.cancelOrDelete(row.currentData.prod_subcat_id) : cancelOrDelete_sc(row.currentData.prod_subcat_id) ">
+              <i class="fa fa-times mat-icon"></i>
+            </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplayforSubCategory"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplayforSubCategory;"></mat-row>
+  </mat-table>
+  <div [hidden]="scshow">No Sub Categories </div>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button (click)="reset()">Reset</button>
+</div>
+</mat-step>
+</mat-horizontal-stepper>
+
+<!-- <mat-paginator [length]="course?.lessonsCount" [pageSize]="3"
+                 [pageSizeOptions]="[5, 10, 15]"></mat-paginator> -->
+
+
+</div>
+</mat-sidenav-container>
+

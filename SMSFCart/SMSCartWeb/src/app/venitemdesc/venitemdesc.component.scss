@@ -1,0 +1,83 @@
+/*.block {
+  display: block;
+}
+
+input {
+  width: 50%;
+  display: inline-block;
+}
+
+span {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: underline;
+}*/
+
+
+/*.modal {
+  padding: 0 !important;
+}
+
+.modal-dialog {
+  max-width: 70% !important;
+  height: 99%;
+  padding: 0;
+  margin: 0;
+
+  overflow-y: auto;
+ 
+}
+
+.modal-content {
+  border-radius: 0 !important;
+  height: 100%;
+
+}*/
+
+
+body {
+  // Set the padding of the results window to 10px.
+  padding: 10px;
+}
+
+.modal-dialog.full-screen {
+  position: fixed;
+  max-width: 70% !important;
+  //width:auto;  // uncomment to make the width based on the left/right attributes.
+  margin: auto;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+
+.modal-dialog.full-screen .modal-content {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+}
+
+.modal-dialog.full-screen .modal-content .modal-header {
+  height: 55px; // adjust as needed.
+}
+
+.modal-dialog.full-screen .modal-content .modal-body {
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 55px; // .modal-header height
+  margin-bottom: 80px; // .modal-footer height
+}
+
+.modal-dialog.full-screen .modal-content .modal-footer {
+  height: 80px; // adjust as needed.
+ // position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

@@ -1,0 +1,70 @@
+<!-- <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()" class="mat-concls"><mat-icon class="menu-iconcls">menu</mat-icon></button>
+    <span><img src="../../../assets/MyImages/mainlogo3.jpg" height="50" width="130" alt="mdb logo" /></span>
+    <div style="margin-top:5px;cursor:pointer;float:right;width:100%">
+
+      <div style="float:right;margin-right:28px">
+        <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+
+      </div>
+      <span class="badge badge-dark bdgsty">9</span>
+
+      <div style="float:right;margin-right:15px" (click)="userprofile()">
+       
+        <span style="text-align:right">
+      
+          <i class="fa fa-user-circle fa-2x mdb-color white-text" aria-hidden="true" [matMenuTriggerFor]="menu"></i>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>assignment</mat-icon>
+              <span>Orders</span>
+            </button>
+            <button mat-menu-item >
+              <mat-icon>favorite_border</mat-icon>
+              <span>WishList</span>
+            </button>
+            <button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>location_on</mat-icon>
+              <span>SaveAddress</span>
+            </button>
+            <button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>account_circle</mat-icon>
+              <span>EditProfile</span>
+            </button>
+            <button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>vpn_key</mat-icon>
+              <span>ChangePassword</span>
+            </button>
+            <button mat-menu-item (click)="uploadimage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>UploadImage</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenavsty" opened="false">
+      <mat-nav-list>
+
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+     
+    </mat-sidenav-content>
+ 
+  </mat-sidenav-container>
+  
+</div>
+ -->

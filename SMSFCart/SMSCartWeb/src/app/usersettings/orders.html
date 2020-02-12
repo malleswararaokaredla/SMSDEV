@@ -1,0 +1,140 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="appDrawer.toggle()" class="mat-concls"><mat-icon class="menu-iconcls">menu</mat-icon></button>
+    <span><img [src]="applog" height="50" width="130" alt="mdb logo" [routerLink]="['/home/']" style="cursor:pointer" /></span>
+    <div style="margin-top:5px;cursor:pointer;float:right;width:100%">
+
+      <div style="float:right;margin-right:28px" (click)="viewbag()">
+        <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+
+      </div>
+      <span class="badge badge-dark bdgsty" (click)="viewbag()">{{catcount}}</span>
+
+      <div style="float:right;margin-right:15px" (click)="userprofile()">
+
+        <span style="">
+
+          <i class="fa fa-user-circle fa-2x mdb-color white-text" aria-hidden="true" [matMenuTriggerFor]="menu" (mouseenter)="openMyMenu()"></i>
+          <mat-menu #menu="matMenu" hidden="hidden">
+            <button mat-menu-item (click)="openorderspage()">
+              <mat-icon>assignment</mat-icon>
+              <span>Orders</span>
+            </button>
+            <button mat-menu-item (click)="whishlist()">
+              <mat-icon>favorite_border</mat-icon>
+              <span>WishList</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>location_on</mat-icon>
+              <span>SaveAddress</span>
+            </button>-->
+            <button mat-menu-item (click)="prifilepage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>EditProfile</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>vpn_key</mat-icon>
+              <span>ChangePassword</span>
+            </button>-->
+            <!--<button mat-menu-item (click)="uploadimage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>UploadImage</span>
+            </button>-->
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="container">
+        <div class="headsty">
+          <span>My ORDERS</span>
+        </div>
+        <div>
+          <div *ngFor="let data of ordersdata">
+            <div style="margin-top:20px;margin-bottom:10px;color:red"><span class="txtsty">Ordered Number   :</span><span class="subtxtsty">{{data.ord_id}}</span></div>
+            <div class="row">
+              <div class="col-md-6">
+                <div><span class="txtsty">Ordered Date  :</span><span class="subtxtsty">{{data.ord_date | date:'dd/MM/yyyy'}}</span></div>
+              </div>
+              <div class="col-md-6">
+                <div><span class="txtsty">Order Status  :</span><span class="subtxtsty" style="color:#31c530">{{data.ord_status}}</span></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div><span class="txtsty">Excepected Delivery Date  :</span><span class="subtxtsty">{{data.expe_dvy_date | date:'dd/MM/yyyy'}}</span></div>
+              </div>
+              <div class="col-md-6">
+                <div><span class="txtsty">Actual Delivery Date  :</span><span class="subtxtsty"> {{data.actl_dvy | date:'dd/MM/yyyy'}}</span></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div><span class="txtsty">Total Amount  :</span><span class="subtxtsty">{{data.total_amount.toFixed(2)}}</span></div>
+              </div>
+
+            </div>
+            <div class="row" style="margin-top:10px;margin-bottom:20px;">
+
+              <div class="col-md-6">
+                <div>
+                  <span class="headsty1">Address To Deliver  </span>
+                </div>
+
+                <div><span class="txtsty">Name :</span><span class="subtxtsty">{{name}}</span></div>
+                <div><span class="txtsty">Dr No  :</span><span class="subtxtsty">{{data.address1}}</span></div>
+
+                <div><span class="txtsty">City :</span><span class="subtxtsty">{{data.city}}</span></div>
+                <div><span class="txtsty">State  :</span><span class="subtxtsty">{{data.state}}</span></div>
+
+                <div><span class="txtsty">Pincode :</span><span class="subtxtsty">{{data.pincode}}</span></div>
+                <div><span class="txtsty">PhoneNumber  :</span><span class="subtxtsty">{{data.phone}}</span></div>
+              </div>
+
+            </div>
+            <div style="margin-top:20px;margin-bottom:10px;color:#e6196d">
+              <span class="txtsty">Ordered Items</span>
+            </div>
+            <div class="row" *ngFor="let dimg of ordsimagsdata;" style="margin-top:10px;margin-bottom:10px" (click)="displayitemdesc(dimg.itm_id)">
+              <div *ngIf="data.ord_id==dimg.ord_id" class="col-md-6">
+                <img [src]="dimg.cat_img" class="imgsty" />
+              </div>
+              <div class="col-md-6" *ngIf="data.ord_id==dimg.ord_id">
+                <div><span class="subtxtsty">{{dimg.brandname}}</span></div>
+                <div><span class="subtxtsty">{{dimg.it_name}}</span></div>
+                <div><span class="subtxtsty">{{dimg.price.toFixed(2)}}</span></div>
+                <div><span class="subtxtsty">Size  :</span><span class="subtxtsty">{{dimg.size}}</span></div>
+                <div><span class="subtxtsty">Qty  :</span><span class="subtxtsty">{{dimg.qunty}}</span></div>
+              </div>
+
+
+            </div>
+            <hr />
+          </div>
+         
+        </div>
+      
+      </div>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>
+

@@ -1,0 +1,353 @@
+
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="appDrawer.toggle()" class="mat-concls"><mat-icon class="menu-iconcls">menu</mat-icon></button>
+    <span><img src="../../../assets/MyImages/mainlogo3.jpg" height="50" width="130" alt="mdb logo" [routerLink]="['/home/']" style="cursor:pointer" /></span>
+    <div style="margin-top:5px;cursor:pointer;float:right;width:100%">
+
+      <div style="float:right;margin-right:28px" (click)="viewbag()">
+        <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+
+      </div>
+      <span class="badge badge-dark bdgsty" (click)="viewbag()">{{catcount}}</span>
+
+      <div style="float:right;margin-right:15px" (click)="userprofile()">
+
+        <span style="text-align:right">
+
+          <i class="fa fa-user-circle fa-2x mdb-color white-text" aria-hidden="true" [matMenuTriggerFor]="menu" (mouseenter)="openMyMenu()"></i>
+          <mat-menu #menu="matMenu" [hidden]="show">
+            <button mat-menu-item (click)="openorderspage()">
+              <mat-icon>assignment</mat-icon>
+              <span>Orders</span>
+            </button>
+            <button mat-menu-item (click)="whishlist()">
+              <mat-icon>favorite_border</mat-icon>
+              <span>WishList</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>location_on</mat-icon>
+              <span>SaveAddress</span>
+            </button>-->
+            <button mat-menu-item (click)="prifilepage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>EditProfile</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>vpn_key</mat-icon>
+              <span>ChangePassword</span>
+            </button>
+            <button mat-menu-item (click)="uploadimage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>UploadImage</span>
+            </button>-->
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <div class="container" style="margin-top:50px">
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Profile
+              </mat-panel-title>
+              <mat-panel-description>
+                View/Edit
+                <mat-icon>account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form class="example-form1" #regForm="ngForm">
+              <div>
+                <div>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="FirstName" [(ngModel)]="reg.firstname" name="firstname" #firstname="ngModel" [disabled]="disbltext" required>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="LastName" [(ngModel)]="reg.lastname" name="lastname" #lastname="ngModel" [disabled]="disbltext" required>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email Id" [(ngModel)]="reg.email" name="email" #email="ngModel" [email]="true" [disabled]="disbltext" required>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput minlength="10" maxlength="10" placeholder="Phone Number" [(ngModel)]="reg.phoneno" name="phoneno" [disabled]="disbltext" #phoneno="ngModel" required (keypress)="_keyPress($event)">
+                  </mat-form-field>
+                </div>
+
+                <div style="margin-top:20px;text-align:center">
+                  <label style="margin-right:8px">Gender: </label>
+                  <mat-radio-group [(ngModel)]="reg.gender" name="gender" [disabled]="disbltext">
+                    <mat-radio-button value="Male">Male</mat-radio-button>
+                    <mat-radio-button value="Female">Female</mat-radio-button>
+                    <mat-radio-button value="Other">Other</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </form>
+
+            <mat-action-row>
+              <div [hidden]="!btnhide">
+                <button mat-raised-button color="accent" (click)="EditMode()">Edit</button>
+              </div>
+              <div [hidden]="btnhide">
+                <button mat-raised-button color="primary" (click)="saveprofileinfo(regForm)">Save</button>
+                <button mat-button color="warn" (click)="cancelMode()">Cancel</button>
+              </div>
+              <div [hidden]="!btnhide">
+                <button mat-button color="primary" (click)="nextStep()">Next</button>
+              </div>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                ChangePassword
+              </mat-panel-title>
+              <mat-panel-description>
+                Edit
+                <mat-icon>vpn_key</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form class="example-form1" #chgpwdForm="ngForm">
+              <div>
+                <div>
+                  <mat-form-field class="example-full-width" hintLabel="Password Length must be minimum 6 characters">
+                    <show-hide-password size="sm" icon="fontawesome" btnStyle="primary" [btnOutline]="false">
+                      <input matInput placeholder="Enter New Password" type="password" [(ngModel)]="reg.password" name="password" #password="ngModel" minlength="6" required>
+                    </show-hide-password>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" hintLabel="Password Length must be minimum 6 characters">
+                    <show-hide-password size="sm" icon="fontawesome" btnStyle="primary" [btnOutline]="false">
+                      <input matInput type="password" placeholder="Enter Confirm Password" name="confirmpassword" minlength="6"
+                             [(ngModel)]="reg.confirmpassword" #confirmpassword="ngModel"
+                             validateEqual="password" min="6" required>
+                    </show-hide-password>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+            <mat-action-row>
+              <div style="margin-right:750px">
+                <button mat-raised-button color="primary" (click)="savepasswordinfo()">Save</button>
+                <button mat-button color="warn" (click)="resetMode()">Reset</button>
+              </div>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                ProfileImage
+              </mat-panel-title>
+              <mat-panel-description>
+                view/edit
+                <mat-icon>account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <form class="example-form1" #svimgForm="ngForm">
+              <div>
+                <div style="float:right" [hidden]="!showimg">
+                  <input type="file" [hidden]="true" #uploader (change)="fileChangeListener($event)" placeholder="Upload file">
+                  <button mat-stroked-button style="background-color:#54a0ff;color:white" (click)="uploader.click()">UploadImage</button>
+                </div>
+                <div [hidden]="showimg">
+                  <div>
+                    <div class="pull-left">
+                      <img-cropper #cropper [image]="data2" [settings]="cropperSettings2"></img-cropper>
+                      <span class="result rounded" *ngIf="data2.image" style="">
+                        <img [src]="data2.image" [width]="cropperSettings2.croppedWidth" [height]="cropperSettings2.croppedHeight" style="margin-top:-290px">
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div [hidden]="!showimg">
+                  <img [src]="disimg" />
+                </div>
+              </div>
+            </form>
+            <mat-action-row>
+              <div [hidden]="showimg" style="margin-right:800px">
+                <button mat-raised-button color="accent" (click)="saveimg()">Save</button>
+              </div>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+            <mat-expansion-panel-header (click)="getuseraddressdata()">
+              <mat-panel-title>
+                Address
+              </mat-panel-title>
+              <mat-panel-description>
+                Edit
+                <mat-icon>location_on</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="addrseditbtnsty" style="margin-bottom:10px">
+              <button mat-raised-button style="background-color:#33b5e5;color:#fff" (click)="addFieldValue()">Add</button>
+            </div>
+            <div *ngIf="display">
+              <div class="addrsblks" *ngFor="let field of existingaddress; let i = index">
+                <form class="example-form1" #Addressform="ngForm">
+                  <div style="float:right;cursor:pointer;color:red" (click)="deletedymicaddrs(i)" [hidden]="closebttn">
+                    <i class="fa fa-close" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="DoorNo" [disabled]="showdiv===i?'false':'true'" [(ngModel)]="field.address" name="address" #address="ngModel" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Street/Town" [disabled]="showdiv===i?'false':'true'" [(ngModel)]="field.town" name="town" #town="ngModel" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="City/District" [disabled]="showdiv===i?'false':'true'" [(ngModel)]="field.city" name="city" #city="ngModel" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="State" [disabled]="showdiv===i?'false':'true'" [(ngModel)]="field.state" name="state" #state="ngModel" required>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field class="example-full-width">
+                      <input matInput #input minlength="6" maxlength="6" placeholder="PinCode" [disabled]="showdiv===i?'false':'true'" [(ngModel)]="field.pincode" name="pincode" #pincode="ngModel" (keypress)="_keyPress($event)" required>
+                    </mat-form-field>
+
+                    <label style="margin-right:8px">Type: </label>
+
+                    <mat-radio-group [(ngModel)]="field.type" name="type1{{i}}" #type="ngModel" [disabled]="showdiv===i?'false':'true'">
+                      <mat-radio-button value="Home">Home</mat-radio-button>
+                      <mat-radio-button value="Office">Office</mat-radio-button>
+                      <mat-radio-button value="Other">Other</mat-radio-button>
+                    </mat-radio-group>
+
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <mat-select placeholder="Available Days" [(ngModel)]="field.avaldays" name="avbldays" #avbldays="ngModel">
+                        <mat-option value="Weekend">Weekend(Monday to Friday)</mat-option>
+                        <mat-option value="Weekend">Sunday Only</mat-option>
+                        <mat-option value="Weekend">All Days</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-select placeholder="Available Times" [(ngModel)]="field.time" name="time" #time="ngModel">
+                        <mat-option value="9 A.M TO 9.P.M">9 A.M TO 9.P.M</mat-option>
+                        <mat-option value="AnyTime">AnyTime</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="addrseditbtnsty">
+                    <div *ngIf="showdiv!=i">
+                      <button mat-raised-button color="accent" (click)="showdiv=i;is_disedit=false">Edit</button>
+                    </div>
+
+                    <div *ngIf="showdiv==i">
+                      <button mat-raised-button color="primary" [disabled]="!Addressform.form.valid" (click)="saveaddressbyAID(i);showdiv=6">Save</button>
+                      <button mat-button color="warn" (click)="showdiv=6;Fillexistingdata(i)">Cancel</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+            <!-- dynamic adding -->
+            <div *ngIf="isEditItems">
+              <div class="addrsblks" *ngFor="let field of fieldArray; let i = index">
+                <div style="float:right;cursor:pointer;color:red" (click)="deleteFieldValue(i)" [hidden]="closebttn">
+                  <i class="fa fa-close" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="DoorNo" [disabled]="is_edit" [(ngModel)]="field.address" name="drno" #drno="ngModel" required>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Street/Town" [disabled]="is_edit" [(ngModel)]="field.town" name="street" #street="ngModel" required>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="City/District" [disabled]="is_edit" [(ngModel)]="field.city" name="city" #city="ngModel" required>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="State" [disabled]="is_edit" [(ngModel)]="field.state" name="state" #state="ngModel" required>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field class="example-full-width">
+                    <input matInput #input minlength="6" maxlength="6" placeholder="PinCode" [disabled]="is_edit" [(ngModel)]="field.pincode" name="pincode" #pincode="ngModel" (keypress)="_keyPress($event)" required>
+                  </mat-form-field>
+
+                  <label style="margin-right:8px">Type: </label>
+
+                  <mat-radio-group [(ngModel)]="field.type" name="type2{{i}}" #type="ngModel" [disabled]="is_edit">
+                    <mat-radio-button value="Home">Home</mat-radio-button>
+                    <mat-radio-button value="Office">Office</mat-radio-button>
+                    <mat-radio-button value="Other">Other</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <mat-select placeholder="Available Days" [(ngModel)]="field.avaldays" name="avbldays" #avbldays="ngModel">
+                      <mat-option value="Weekend">Weekend(Monday to Friday)</mat-option>
+                      <mat-option value="Weekend">Sunday Only</mat-option>
+                      <mat-option value="Weekend">All Days</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select placeholder="Available Times" [(ngModel)]="field.time" name="time" #time="ngModel">
+                      <mat-option value="9 A.M TO 9.P.M">9 A.M TO 9.P.M</mat-option>
+                      <mat-option value="AnyTime">AnyTime</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="addrseditbtnsty" [hidden]="dymicbtns">
+              <div [hidden]="btnhide2">
+                <button mat-raised-button color="accent" (click)="EditMode2()">Edit</button>
+              </div>
+
+              <div [hidden]="!btnhide2">
+                <button mat-raised-button color="primary" (click)="saveaddrsdata()">Save</button>
+                <button mat-button color="warn" (click)="cancelMode2()">Cancel</button>
+              </div>
+            </div>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">END</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>
+

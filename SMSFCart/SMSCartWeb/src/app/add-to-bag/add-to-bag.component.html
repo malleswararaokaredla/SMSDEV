@@ -1,0 +1,146 @@
+
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="appDrawer.toggle()" class="mat-concls"><mat-icon class="menu-iconcls">menu</mat-icon></button>
+    <span><img src="../../../assets/MyImages/mainlogo3.jpg" height="50" width="130" alt="mdb logo" [routerLink]="['/home/']" style="cursor:pointer" /></span>
+    <!--<div style="margin-top:5px;cursor:pointer;float:right;width:100%">
+    
+      <div style="float:right;margin-right:15px" (click)="userprofile()">
+
+        <span style="text-align:right">
+
+          <i class="fa fa-user-circle fa-2x mdb-color white-text" aria-hidden="true" [matMenuTriggerFor]="menu" (mouseenter)="openMyMenu()"></i>
+          <mat-menu #menu="matMenu" [hidden]="show">
+            <button mat-menu-item (click)="openorderspage()">
+              <mat-icon>assignment</mat-icon>
+              <span>Orders</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>favorite_border</mat-icon>
+              <span>WishList</span>
+            </button>
+         
+            <button mat-menu-item (click)="prifilepage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>EditProfile</span>
+            </button>
+          
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+    </div>-->
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+   <div class="container margs">
+
+     <div class="headsty">
+       <span>My Shopping Bag ({{count}} Items)</span>
+     </div>
+     <div class="row" *ngFor="let item of BagItems;let i=index" style="margin-bottom:10px;"  >
+       <div class="col-md-6">
+         <div>
+           <img [src]="item.cat_img" width="200" />
+         </div>
+       </div>
+       <div class="col-md-6">
+         <div>
+           <span class="txtsty">Name  :</span><span class="subtxtsty">{{item.it_name}}</span>
+         </div>
+         <div>
+           <span class="txtsty">Price  :</span><span class="subtxtsty">{{item.price.toFixed(2)}}</span>
+         </div>
+         <!--<div>
+           <span class="txtsty">Size :</span><span class="subtxtsty">{{item.size}}</span>
+         </div>-->
+         <div>
+           <span class="txtsty">Size  :</span><span class="subtxtsty">
+             <select style="border:none" (change)="getsizevalue($event.target.value,i)">
+               <option *ngFor="let sz of sizes" [value]="sz" [selected]="sz==item.size">{{sz}}</option>
+             </select>
+           </span>
+
+         </div>
+         <!--<div>
+    <span class="txtsty">Qty  :</span><span class="subtxtsty">
+
+
+      {{item.qunty}}
+    </span>
+  </div>-->
+         <div>
+           <span class="txtsty">Qty  :</span><span class="subtxtsty">
+             <select style="border:none" (change)="getquntyvalue($event.target.value,i)">
+               <option *ngFor="let qty of quntysequnc" [value]="qty" [selected]="qty==item.qunty">{{qty}}</option>
+             </select>
+           </span>
+
+         </div>
+         <div style="margin-top:20px">
+           <button mdbBtn type="button" color="blue-grey" mdbWavesEffect (click)="RemoveFromBag(item)">Remove</button>
+           <button mdbBtn type="button" color="pink" mdbWavesEffect (click)="movetowishlist(item)">Move To WishList</button>
+         </div>
+
+       </div>
+     </div>
+
+     <div *ngIf="count>0">
+       <div class="headsty2">
+         <span class="headsty2">Summary</span>
+       </div>
+       <div class="sumbrysty">
+         <div class="row">
+           <div class="col-md-6">
+             <span class="txtsty">Total Price :</span>
+           </div>
+           <div class="col-md-6">
+             <span class="subtxtsty">{{totalprice.toFixed(2)}}</span>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-md-6">
+             <span class="txtsty">Shipping Charges :</span>
+           </div>
+           <div class="col-md-6">
+             <span class="subtxtsty">{{shpngchrgs.toFixed(2)}}</span>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-md-6">
+             <span class="txtsty">Amount Payable :</span>
+           </div>
+           <div class="col-md-6">
+             <span class="subtxtsty">{{totalamount.toFixed(2)}}</span>
+           </div>
+         </div>
+
+         <div style="text-align:center;margin-top:20px;">
+           <button mdbBtn type="button" size="lg" mdbWavesEffect style="width:500px;background-color:#00cccc;color:white" (click)="checkout()">CheckOut</button>
+         </div>
+
+       </div>
+      
+     </div>
+   </div>
+    
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>
+

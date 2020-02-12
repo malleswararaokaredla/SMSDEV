@@ -1,0 +1,240 @@
+
+<app-top-nav class="fixed-topnav" fxHide.gt-xs></app-top-nav>
+<mat-sidenav-container>
+  <mat-sidenav #appDrawer mode="over" opened="false">
+    <mat-nav-list>
+      <side-nav-menu-list-item *ngFor="let item of navItems" [item]="item"></side-nav-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="container" style="margin-left: 270px;max-width: 1200px;padding-top:10px;">
+    <div class="card card-primary">
+
+      <div class="card-header">
+        <h3>Vendor Items Adding</h3>
+        <div class="float-right" style="margin-top:-35px">
+          <button type="button" id="btnadd" class="btn btn-primary" data-toggle="modal" data-target="#myitemmodal" name="itembutton" data-dismiss="modal">Add New</button>
+        </div>
+      </div>
+
+      <div class="px-4">
+        <!--Table-->
+        <table class="table table-striped table-hover table-bordered" id="ddlvendor" style="margin-top: 15px;">
+          <thead class="white-text" style="background-color:#4285f4 ">
+            <tr>
+              <th scope="col">Itemname</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Category Name</th>
+              <th scope="col">Product Sub Category Name</th>
+              <th scope="col">Item Image</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let data of vendordata">
+            <tr>
+              <td id="{{data.itm_id}}">{{data.itemname}}</td>
+              <td>{{data.pName}}</td>
+              <td>{{data.pcName}}</td>
+              <td>{{data.pscName}}</td>
+              <td>
+
+                <span class="result rounded">
+                  <img [src]="data.cat_img" style="width:200px;height:200px">
+                </span>
+                <!--D:/Trianing/GIT/SMSFCart/SMSFCart/wwwroot/images/Products/ProductsCategory/ProductsSubCategory/itemimg/-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="clearfix"></div>
+
+
+
+      <!-- /col-lg-12 -->
+
+    </div>
+
+    </div>
+</mat-sidenav-container>
+
+
+
+  <!---------------------------- vehicle-Modal-crud begin------------------------------------------>
+  <!-- save-Modal -->
+  <div class="modal fade" id="myitemmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="btncls1" data-dismiss="modal" #closeBtn aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myvehicleLabel">Enter vendor Items</h4>
+        </div>
+
+        <div class="modal-body" style="padding:40px 20px;background:#ebeff2">
+
+
+          <form class="form-horizontal" #itemform="ngForm">
+
+            <table class="col-12" *ngFor="let field of fieldArray; let i = index">
+              <tr>
+                <td class="col-xs-6">
+                  <div class="form-group">
+                    <label for="itemname" class="control-label">Item Name:</label>
+                    <div class="">
+                      <input type="text" class="form-control" id="itemname" name="itemname" [(ngModel)]="field.itemname"
+                             #itemname="ngModel" required />
+
+                    
+                    </div>
+                  </div>
+                </td>
+                <td class="col-xs-6">
+                  <div class="form-group">
+                    <label for="pName" class="control-label col-xs-3">pName:</label>
+                    <div class="col-xs-9">
+                      <select placeholder="Select pName" class="form-control" name="PID" [(ngModel)]="field.PID"
+                              #PID="ngModel" (change)="productaccord($event.target.value)" required>
+                        <option [value]="v.pid" *ngFor="let v of products">{{v.pName}}</option>
+                      </select>
+                      <!--[ngClass]="{ 'is-invalid': itemform.submitted && pName.invalid }"<div *ngIf="itemform.submitted && pName.invalid" class="invalid-feedback">
+    <div *ngIf="pName.errors.required">pName is required</div>
+  </div>-->
+                      <br>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-6">
+                  <div class="form-group">
+                    <label class="form-control-label col-xs-4" style="color: black" for="message">Product Category_Name</label>
+                    <div class="col-xs-8">
+                      <select class="form-control" id="ddlcname" name="prod_cat_id" placeholder="select Product name" #prod_cat_id="ngModel" [(ngModel)]="field.prod_cat_id" (change)="productcat($event.target.value)"
+                              required>
+                        <!--(change)="productcat($event.target.value)"-->
+                        <option *ngFor="let v of prodcategories" [value]="v.prod_cat_id">{{v.pcName}}</option>
+                      </select>
+
+                      <!--[ngClass]="{ 'is-invalid': itemform.submitted && pcname.invalid }" <div *ngIf="itemform.submitted && pcname.invalid" class="invalid-feedback">
+    <div *ngIf="pcname.errors.required">Product category is required</div>
+  </div>-->
+
+                    </div>
+                  </div>
+                </td>
+                <td class="col-xs-6">
+                  <div class="form-group">
+                    <label class="form-control-label col-xs-4" style="color: black" for="pcname">Product SCategory_Name</label>
+                    <div class="col-xs-8">
+                      <select class="form-control" id="ddlpcname" name="prod_subcat_id" #prod_subcat_id="ngModel" placeholder="select Product name" [(ngModel)]="field.prod_subcat_id"
+                              required>
+                        <option *ngFor="let p of prodsubcategories" [value]="p.prod_subcat_id">{{p.pscname}}</option>
+                      </select>
+
+                      <!--[ngClass]="{ 'is-invalid': itemform.submitted && pscname.invalid }"<div *ngIf="itemform.submitted && pscname.invalid" class="invalid-feedback">
+    <div *ngIf="pscname.errors.required">Product sub category is required</div>
+  </div>-->
+
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-6">
+                  <div class="form-group">
+                    <label for="Image" class="control-label col-xs-3">Upload Picture:</label><br>
+                    <div class="col-xs-4">
+                      <input #file type="file" multiple (change)="Fileupload($event)" class="form-control" />
+                      <br />
+                      <!--<span style="font-weight:bold;color:green;" *ngIf="progress">
+            0 && progress < 100">
+            {{progress}}%
+          </span>
+
+          <span style="font-weight:bold;color:green;" *ngIf="message">
+            {{message}}
+          </span>-->
+                    </div>
+                  </div>
+                </td>
+                <!--<div *ngIf="itemform.submitted && Image.invalid" class="invalid-feedback">
+      <div *ngIf="Image.errors.required">Item image is required</div>
+    </div>-->
+                <td>
+                  <div [hidden]="showimg" class="col-xs-5">
+
+                    <div>
+                      <div class="pull-center">
+                        <span class="result rounded">
+                          <img [src]="itemimg" style="width:200px;height:120px">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </td>
+              </tr>
+
+              <tr class="col-6">
+                <td>
+                  <label for="group2">Add picture catalog</label>&nbsp;
+
+                  <i class="fa fa-plus" aria-hidden="true" style="cursor:pointer" (click)="additemValue()"></i>
+                  <i class="fa fa-close" aria-hidden="true" style="cursor:pointer" (click)="deleteitemValue(j)"></i>
+                </td>
+              </tr>
+
+            </table>
+
+            <table>
+              
+              <tr *ngFor="let item of itemArray; let j = index">
+                <td class="col-xs-6">
+                  <div class="form-group">
+
+                    <div class="input-group" id="group2">
+                      <!--<div class="input-group-prepend">
+            <span class="input-group-text" id="addon2"><i class="far fa-file-image"></i></span>
+          </div>-->
+                      <div class="custom-file">
+                        <!--<input type="file" class="custom-file-input" id="file2" name="images" #images="ngModel" [(ngModel)]="item.images" (change)="fileSelectionEvent($event,i)" aria-describedby="addon2">
+  <label class="custom-file-label" for="file2">Choose file</label>-->
+                        <!--<input #file1 type="file" multiple (change)="getFileDetails($event)" name="catlog_img" class="form-control">-->
+                        <!--<input #file type="file" accept='image/*' (change)="preview($event)" />-->
+                        <!--<img *ngIf="imgURL" [src]="imgURL" class="rounded mb-3" width="180">-->
+                        <input type="file"  multiple (change)="detectFiles($event)">
+
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div [hidden]="showimgshape" class="col-xs-5">
+
+                    <div>
+                      <div class="pull-center">
+                        <span class="result rounded">
+                          <img *ngIf="imgURL" [src]="imgURL" style="width:200px;height:120px">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </td>
+              </tr>
+            </table>
+            <div class="modal-footer">
+
+              <button class="btn btn-primary" id="btnsave" [disabled]="!itemform.form.valid" (click)="onRegister(itemform)">submit</button>
+              <button type="button" id="btncls" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+
+
+          
+        </div>
+    </div>
+  </div>
+</div>
+ 
+  <div class="backdrop" [ngStyle]="{'display':display}"></div>

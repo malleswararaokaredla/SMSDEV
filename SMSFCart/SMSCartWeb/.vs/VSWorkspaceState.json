@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\home",
+    "\\src\\app\\menu-list-item",
+    "\\src\\app\\services",
+    "\\src\\app\\venitemadd",
+    "\\src\\app\\womenstore",
+    "\\src\\app\\womenstore\\sidemenu"
+  ],
+  "SelectedNode": "\\src\\app\\venitemadd\\venitemadd.component.ts",
+  "PreviewInSolutionExplorer": false
+}

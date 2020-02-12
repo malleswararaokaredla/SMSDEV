@@ -1,0 +1,125 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="appDrawer.toggle()" class="mat-concls"><mat-icon class="menu-iconcls">menu</mat-icon></button>
+    <span><img [src]="applog" height="50" width="130" alt="mdb logo" [routerLink]="['/home/']" style="cursor:pointer" /></span>
+    <div style="margin-top:5px;cursor:pointer;float:right;width:100%">
+
+      <div style="float:right;margin-right:28px" (click)="viewbag()">
+        <i class="fa fa-shopping-cart fa-2x cyan-text" aria-hidden="true"></i>
+
+      </div>
+      <span class="badge badge-dark bdgsty" (click)="viewbag()">{{catcount}}</span>
+
+      <div style="float:right;margin-right:15px" (click)="userprofile()">
+
+        <span style="">
+
+          <i class="fa fa-user-circle fa-2x mdb-color white-text" aria-hidden="true" [matMenuTriggerFor]="menu" (mouseenter)="openMyMenu()"></i>
+          <mat-menu #menu="matMenu" hidden="hidden">
+            <button mat-menu-item (click)="openorderspage()">
+              <mat-icon>assignment</mat-icon>
+              <span>Orders</span>
+            </button>
+            <button mat-menu-item (click)="whishlist()">
+              <mat-icon>favorite_border</mat-icon>
+              <span>WishList</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>location_on</mat-icon>
+              <span>SaveAddress</span>
+            </button>-->
+            <button mat-menu-item (click)="prifilepage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>EditProfile</span>
+            </button>
+            <!--<button mat-menu-item (click)="openChangepwdDialog()">
+              <mat-icon>vpn_key</mat-icon>
+              <span>ChangePassword</span>
+            </button>-->
+            <!--<button mat-menu-item (click)="uploadimage()">
+              <mat-icon>account_circle</mat-icon>
+              <span>UploadImage</span>
+            </button>-->
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </span>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!--<div style="margin:50px;">
+
+
+        <div class="row">
+          <div class="col-md-2 blocksty" *ngFor="let element of items" (click)="displayitemdesc(element.itm_id)">
+            <div>
+              <img [src]="element.cat_img" class="imgsty" />
+            </div>
+            <div class="pricesty">
+              <span>{{element.it_name}}</span>
+            </div>
+            <div class="pricesty" style="font-weight:bold">
+              RS.  <span>{{element.price}}</span>
+            </div>
+          </div>
+        </div>
+      </div>-->
+
+
+      <div style="margin:50px;">
+        <div>
+          <div class="row">
+            <div class="col-md-2 blocksty" *ngFor="let element of whishlistdata;let imgindex = index">
+              <div style="float:right;cursor:pointer;color:red;margin-right:22px;" (click)="deleteitemfromwhishlist(imgindex)">
+                <i class="fa fa-close" aria-hidden="true"></i>
+              </div>
+              <div>
+                <img [src]="element.cat_img" class="imgsty" />
+              </div>
+              <div class="pricesty">
+                <span>{{element.it_name}}</span>
+              </div>
+              <div class="pricesty" style="font-weight:bold">
+                RS.  <span>{{element.price}}</span>
+              </div>
+              <div *ngIf="imgindex==showsizediv">
+                <div class="btn-group-vertical" role="group" aria-label="button group" *ngFor="let itm of itemsizes">
+                  <button mdbBtn type="button" color="amber" class="waves-light ml-0" mdbWavesEffect style="border-radius:50%;padding:20px;margin-left:10px"
+                          [ngClass]="['bntStyle']" (click)="getitemsize(itm.itm_size)">
+                    {{itm.itm_size}}
+                  </button>
+                  <!--<button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+      <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+      <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+      <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>
+      <button mdbBtn type="button" color="amber" class="waves-light" mdbWavesEffect>Button</button>-->
+                </div>
+              </div>
+              <div>
+                <button mdbBtn type="button" color="secondary" outline="true" mdbWavesEffect class="btnsty" (click)="Movetobag(element,imgindex)">Move To Bag</button>
+                <!--<button mdbBtn type="button" color="link" class="btnsty" (click)="Remove(element,imgindex)">Remove</button>-->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>
+

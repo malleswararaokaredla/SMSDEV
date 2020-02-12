@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="mat-elevation-z1">
+  <button mat-icon-button id="menu" (click)="navService.openNav()">
+    <mat-icon>menu</mat-icon>
+  </button>    
+  <span> Welcome {{uType}} </span>
+  <div>     
+  <div style="margin-left:1610px;margin-top:5px;float:right;align-self:right;cursor:pointer;" >      
+    <i class="fa fa-user-circle fa-2x mdb-color white-text" style="cursor:pointer;" aria-hidden="true"  (mouseenter)="openMyMenu()"  [matMenuTriggerFor]="menu" ></i>
+  </div>
+  <mat-menu #menu="matMenu" hidden="hidden">
+    <button mat-menu-item (click)="EditProfile()">
+      <mat-icon>edit</mat-icon>
+      <span>Edit Profile</span>
+    </button>
+    <button mat-menu-item (click)="Logout()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>  
+  </div>
+</mat-toolbar>

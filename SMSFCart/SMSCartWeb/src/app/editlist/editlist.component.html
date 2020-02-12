@@ -1,0 +1,76 @@
+<app-top-nav class="fixed-topnav" fxHide.gt-xs></app-top-nav>
+  <mat-sidenav-container>
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+        <side-nav-menu-list-item *ngFor="let item of navItems" [item]="item"></side-nav-menu-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="container" style="margin-left: 270px;max-width: 1200px">   
+    <table >
+      <th style="text-align: center">
+        <h3> {{RoleName}} List </h3>
+      </th>
+    </table>
+
+
+    <mat-table class="table-margin-bottom" #table [dataSource]="dataSource">
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+            <input matInput [formControl]="row.validator.controls['firstName']" [readonly]="!row.editing" placeholder="First Name" [(ngModel)]="row.currentData.firstName">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+            <input matInput [formControl]="row.validator.controls['lastName']" [readonly]="!row.editing" placeholder="Last Name" [(ngModel)]="row.currentData.lastName">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+              <input id="insmail" matInput [formControl]="row.validator.controls['email']" [readonly]="!row.editing" placeholder="Email ID" [(ngModel)]="row.currentData.email" (focusout)="UniqueEmail(row.currentData.email,row.currentData.uid)">
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="phoneNo">
+            <mat-header-cell *matHeaderCellDef> Phone number </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+                <input matInput [formControl]="row.validator.controls['phoneNo']"  [readonly]="!row.editing" placeholder="Phone Number" maxlength="10" minlength="10" [(ngModel)]="row.currentData.phoneNo" >
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>         
+      <ng-container matColumnDef="actionsColumn">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="accent" (click)="dataSource.createNew()"><i class="fa fa-plus mat-icon"></i></button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (click)="row.startEdit()">
+                <i class="fa fa-pencil mat-icon"></i>
+              </button>
+          <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="confirmEditCreate(row)">
+                <i class="fa fa-check mat-icon"></i>
+              </button>
+          <button mat-icon-button color="primary" focusable="false" (click)="( row.currentData.uid == 0 || row.editing ) ? row.cancelOrDelete(row.currentData.uid) : cancelOrDelete(row.currentData.uid) ">
+                <i class="fa fa-times mat-icon"></i>
+              </button>
+        </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+    </mat-table> 
+    
+    <div [hidden]="show">No Vendors Data </div>
+
+</div>
+</mat-sidenav-container>
+
+
+

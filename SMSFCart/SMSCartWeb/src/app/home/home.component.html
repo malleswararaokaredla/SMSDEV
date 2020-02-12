@@ -1,0 +1,41 @@
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+<!--  Content  -->
+<article>
+  <div class="headermenu">
+    <h1 class="hdsty"> FASHION </h1>
+    <div style="margin-bottom:30px;">
+      <span class="subhdsty">THE JOY OF DRESSING IS AN ART</span>
+    </div>
+    <!--<span class="text-center" *ngFor="let item of productslist">
+
+    <span *ngIf="item.pname==='Men'">
+
+      <button mdbBtn type="button" class="aqua-gradient btnsizes" mdbWavesEffect (click)="menstore(item.pid)">MENS</button>
+    </span>
+    <span *ngIf="item.pname==='Women'">
+      <button mdbBtn type="button" class="peach-gradient btnsizes" mdbWavesEffect (click)="womenstore(item.pid)">WOMENS</button>
+    </span>
+    <span *ngIf="item.pname==='Kids'">
+      <button mdbBtn type="button" class="dusty-grass-gradient btnsizes" mdbWavesEffect (click)="kidstore(item.pid)">KIDS</button>
+    </span>
+  </span>-->
+
+    <span class="text-center" *ngFor="let item of productslist; let i = index">
+      <span *ngIf="item.pid < 103">
+        <button mdbBtn type="button" [ngClass]="{'aqua-gradient':(i==0), 'peach-gradient':(i==1), 'dusty-grass-gradient':(i==2), 'btnsizes': true}" mdbWavesEffect (click)="loadstorebyproduct(item.pid, item.pname)">{{ item.pname }}</button>
+      </span>
+    </span>
+    <div class="text-center" [hidden]="loginsts">
+      <a mat-button (click)="loginmodel()" class="loginlinksty">Have an account? Log in</a>
+      <a mat-button (click)="vendordata()" class="loginlinksty"> Vendor</a>
+    </div>
+  </div>
+
+</article>
+
+
+<!--  Video is muted & autoplays, placed after major DOM elements for performance & has an image fallback  -->
+<video autoplay loop id="video-background" muted plays-inline>
+  <source src="https://www.georgewpark.com/video/blurred-street.mp4" type="video/mp4">
+</video>

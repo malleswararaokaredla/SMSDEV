@@ -1,0 +1,102 @@
+<div style="margin-top:30px;">
+  <mat-dialog-content>
+    <mat-tab-group color="accent" mat-stretch-tabs>
+      <mat-tab label="Login">
+        <div style="margin-left:0px">
+          <br />
+          <br />         
+          <form class="example-form" #loginForm="ngForm">
+            <div class="text-center">
+              <mat-form-field class="example-full-width" style=" width:550px !important;">
+                <input matInput placeholder="Enter Email Id" [(ngModel)]="login.email" name="email" #email="ngModel" [email]="true" required>
+              </mat-form-field>
+            </div>
+
+            <div class="text-center">
+              <mat-form-field class="example-full-width" style=" width:550px !important;" hintLabel="Password Length must be minimum 6 characters">
+                <show-hide-password size="sm" icon="fontawesome" btnStyle="primary" [btnOutline]="false">
+                  <input matInput type="password" placeholder="Enter Password" [(ngModel)]="login.password" name="password" #password="ngModel" minlength="6" required>
+                </show-hide-password>
+
+              </mat-form-field>
+            </div>
+            <br />
+            <br />
+            <hr />
+            <div class="text-center">
+              <button mdbBtn color="default" class="waves-light" mdbWavesEffect [disabled]="!loginForm.form.valid" (click)="submitlogdata(loginForm)">Login</button>
+              <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="loginclosemodel()">Close</button>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+      <mat-tab label="Register">
+        <div>
+          <br />
+          <br />        
+          <form class="example-form1" #regForm="ngForm">
+            <div class="text-center">
+              <div>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Enter FirstName" [(ngModel)]="reg.firstname" name="firstname" #firstname="ngModel" required>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Enter LastName" [(ngModel)]="reg.lastname" name="lastname" #lastname="ngModel" required>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Enter Email Id" [(ngModel)]="reg.email" name="email" #email="ngModel" [email]="true" required (focusout)="callcheckusernameapi()">
+
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                  <input matInput minlength="10" maxlength="10" placeholder="Enter Phone Number" [(ngModel)]="reg.phoneno" name="phoneno" #phoneno="ngModel" required (keypress)="_keyPress($event)">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width" hintLabel="Password Length must be minimum 6 characters">
+                 <show-hide-password size="sm" icon="fontawesome" btnStyle="primary" [btnOutline]="false">
+                    <input matInput placeholder="Enter Password" type="password" [(ngModel)]="reg.password" name="password" #password="ngModel" minlength="6" required>
+                  </show-hide-password>
+                </mat-form-field>
+
+
+                <mat-form-field class="example-full-width" hintLabel="Password Length must be minimum 6 characters">
+                 <show-hide-password size="sm" icon="fontawesome" btnStyle="primary" [btnOutline]="false">
+                    <input matInput placeholder="Enter ConfirmPassword" name="confirmpassword" minlength="6"
+                           [(ngModel)]="reg.confirmpassword" #confirmpassword="ngModel"
+                           validateEqual="password" min="6" type="password" required>
+                  </show-hide-password>
+                </mat-form-field>
+              </div>
+
+              <div style="margin-top:20px;">
+                <label style="margin-right:8px">Gender: </label>
+
+                <mat-radio-group [(ngModel)]="reg.gender" name="gender">
+                  <mat-radio-button value="Male">Male</mat-radio-button>
+                  <mat-radio-button value="Female">Female</mat-radio-button>
+                  <mat-radio-button value="Other">Other</mat-radio-button>
+                </mat-radio-group>
+              </div>
+
+            </div>
+            <div style="margin-bottom:40px;">
+              <span style="float:left;color:red">{{errmsg}}</span>
+            </div>
+            <hr />
+            <div class="text-center">
+              <button mdbBtn color="info" class="waves-light" mdbWavesEffect [disabled]="!regForm.form.valid" (click)="submitregdata(regForm)">Sign Up</button>
+              <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="loginclosemodel()">Close</button>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+  </mat-dialog-content>
+</div>
+
+

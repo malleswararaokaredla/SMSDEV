@@ -1,0 +1,143 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-form-field {
+  width: 450px !important;
+  margin-left: 10px;
+}
+
+
+.mat-radio-button {
+  padding-right: 16px;
+}
+
+.mat-input-element:disabled {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.mat-form-field-label {
+  font-size: 19px;
+}
+
+
+//image style
+h3 {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #a0a0a0;
+}
+
+h4 {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #a0a0a0;
+}
+
+.result {
+  margin-top: -285px;
+  /*border: 1px solid rgba(125, 125, 125, 0.6);*/
+  display: inline-block;
+  padding: 1px;
+}
+
+.result.rounded > img {
+  border-radius: 100px;
+}
+
+.pull-left {
+  min-width: 400px;
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.file-upload {
+  height: 25px;
+  width: 100px;
+  position: relative;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  border: 1px solid #FFF;
+  overflow: hidden;
+  background-size: 100% 200%;
+  transition: all 1s;
+  color: #FFF;
+  font-size: 10px;
+}
+
+/*.file-upload:hover {
+  background-position: 0-100%;
+  color: #2590Eb;
+}*/
+
+.text {
+  font-size: 14px;
+}
+
+input[type='file'] {
+  height: 25px;
+  width: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+.addrsblks {
+  border: 1px solid #a0a0a0;
+  margin-top: 55px;
+}
+
+.addrseditbtnsty {
+  float: right;
+  margin-top: 10px;
+}
+.imgsty {
+  width: 150px;
+  height: 150px;
+  cursor:pointer;
+}
+
+
+.headsty {
+  font-family: 'Righteous';
+  color: #f7055e;
+  font-size: 20px;
+  padding: 0px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.txtsty {
+  font-family: 'Fredoka One';
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.subtxtsty {
+  font-family: 'Fredoka One';
+  font-size: 20px;
+  font-weight: bold;
+  color: #808080;
+}
+
+.headsty1 {
+  font-family: 'Righteous';
+  color: #2565d8;
+  font-size: 25px;
+  margin-bottom:10px;
+}
